@@ -4,10 +4,19 @@
 if [ -z "$1" ]
 then
 	echo "need to pass FQDN"
-	echo "PROTIP: grep for 'After' to see expiry"
+	echo "add --full to see whole thing"
+	echo "at which point you might want to put in your own 'grep' statement"
 else
-	echo | \
-		openssl s_client -servername $1 -connect $1:443 2>/dev/null | \
-		openssl x509 -text | \
-  			grep -e Issuer: -e After -e Before -e Subject:
+	if [[ "--full" == "$2" ]]
+	then
+		echo | \
+			openssl s_client -servername $1 -connect $1:443 2>/dev/null | \
+			openssl x509 -text
+	else
+
+		echo | \
+			openssl s_client -servername $1 -connect $1:443 2>/dev/null | \
+			openssl x509 -text | \
+				grep -e Issuer: -e After -e Before -e Subject:
+	fi
 fi
