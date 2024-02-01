@@ -3,6 +3,8 @@
 # NOTE:
 # FIDO2 resets require reinserting/touching the key; you can comment that line out if you want a more automated approach, without resetting FIDO2
 
+# requires: yubikey-manager; yubikey-personalization
+
 # find version, serial, if available:
 # ykinfo -sv
 # but since that fails on older Yubikeys, let's do them separate:
