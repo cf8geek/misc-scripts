@@ -47,6 +47,7 @@ while (my $x = <$fh_read>) {
 	# https://support.knowbe4.com/hc/en-us/articles/204949707-Placeholders-Guide
 		# and all linked documentation on above page
 	# https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulation-training-payloads?view=o365-worldwide
+ 	# https://techcommunity.microsoft.com/t5/security-compliance-and-identity/introducing-additional-dynamic-tags-in-attack-simulation/ba-p/3311746
 	# $x =~ s///sg;
 	# for some reason, neither KB4 nor M$ seem to have [[URL]] nor ${phishingUrl} publicly documented, but we know from seeing it before across multiple tenants, that this is how it works...
 	# the "malicious" link
