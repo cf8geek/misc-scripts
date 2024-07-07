@@ -33,6 +33,7 @@ echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config.d/custom.conf
 echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config.d/custom.conf
 service sshd restart
 # change root password to "taco" - added without (re-)testing 2024-07-07
+# via: https://stackoverflow.com/questions/43953323/change-user-password-with-one-bash-command-line
 echo 'root:taco' | chpasswd
 # make shadow file immutable so they can't change password(s) back
 chattr +i /etc/shadow
