@@ -1,0 +1,11 @@
+# lives at:
+# /etc/apt/apt.conf.d/51apt-proxy.conf.disabled
+Acquire {
+        HTTP::proxy "http://199.100.16.100:3128/";
+        HTTPS::proxy "http://199.100.16.100:3128/";
+}
+# enable/disable by renaming to with/without .disabled, such as:
+# to enable:
+# mv /etc/apt/apt.conf.d/51apt-proxy.conf{.disabled,}
+# to disable:
+# mv /etc/apt/apt.conf.d/51apt-proxy.conf{,.disabled}
