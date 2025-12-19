@@ -3,6 +3,7 @@ if [ -z "$1" ]; then
 	echo "need year, but didn't get it. bye."
 	exit;
 fi
+year=$1
 mkdir $year
 mkdir $year/01-January
 mkdir $year/02-February
