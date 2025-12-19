@@ -1,0 +1,13 @@
+mkdir 01-January
+mkdir 02-February
+mkdir 03-March
+mkdir 04-April
+mkdir 05-May
+mkdir 06-June
+mkdir 07-July
+mkdir 08-August
+mkdir 09-September
+mkdir 10-October
+mkdir 11-November
+mkdir 12-December
+del make-monthly-subfolders_and-delete-self.bat
